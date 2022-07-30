@@ -1,6 +1,8 @@
 # Opendisguard
 Opendisguard is a self-hostable Discord bot which combats spam using CAPTCHAs locally. (WIP)
 
+![Demo](https://raw.githubusercontent.com/Paimon2/Opendisguard/main/Demo.png)
+
 It differs from other bots by:
 - Having completely local CAPTCHA generation, no dependency on reCAPTCHA/hCaptcha/2Captcha
 - Being easily modifable to generate more complex CAPTCHA images (as OpenCV is used)
