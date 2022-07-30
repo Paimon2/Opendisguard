@@ -16,7 +16,7 @@ using OpenCvSharp;
 
         var dmChannel = await user.CreateDMChannelAsync();
 
-        await dmChannel.SendMessageAsync("Configurable text");
+        await dmChannel.SendMessageAsync("Welcome to this server! To get verified, please prove you are not a bot by typing out the characters below:");
         await dmChannel.SendFileAsync(captcha.image.ToMemoryStream(), "captcha.png");
 
         Database.AddVerificationCode(user.Id, captcha.text);
@@ -29,7 +29,7 @@ using OpenCvSharp;
 
         var dmChannel = await user.CreateDMChannelAsync();
 
-        await dmChannel.SendMessageAsync("Configurable text");
+        await dmChannel.SendMessageAsync("Welcome to this server! To get verified, please prove you are not a bot by typing out the characters below:");
         await dmChannel.SendFileAsync(captcha.image.ToMemoryStream(), "captcha.png");
 
         Database.AddVerificationCode(user.Id, captcha.text);
