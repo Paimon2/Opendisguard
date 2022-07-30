@@ -18,6 +18,12 @@ using System.Text;
             IncludeLowercase = 2,
         }
 
+        public struct CaptchaDetails
+        {
+        public Mat image;
+        public String text;
+        }
+
         /*
          * @desc Returns 1 single letter based on the flags passed
          * to it (see LetterRestrictions)
@@ -68,9 +74,10 @@ using System.Text;
          * @desc Returns a matrix of a captcha image with all the fiddly-bits figured out.
          * @return Matrix of a captcha image.
          */
-        public static Mat getCaptchaImage()
+        public static CaptchaDetails GenerateNewCaptcha()
         {
             Random rnd = new Random();
+        CaptchaDetails ret = new CaptchaDetails();
 
             // Make a new 200x450 canvas
             Mat img1 = new Mat(200, 450, MatType.CV_8U, 3);
@@ -117,8 +124,10 @@ using System.Text;
             // Blur the entire image ever so slightly before returning it as a Mat
             Cv2.GaussianBlur(img1, img1, new Size(23, 23), 1);
 
-
-            return img1;
+         ret.image = img1;
+         ret.text = captchaText;
+            
+         return ret;
         }
     }
 

@@ -11,12 +11,13 @@ using OpenCvSharp;
 
     private static async void SendCaptcha(SocketGuildUser user)
     {
-        Mat captcha = Captcha.getCaptchaImage();
+        Captcha.CaptchaDetails captcha = Captcha.GenerateNewCaptcha();
+        // TODO Add user ID and captcha text to DB
 
         var dmChannel = await user.CreateDMChannelAsync();
 
         await dmChannel.SendMessageAsync("Configurable text");
-        await dmChannel.SendFileAsync(captcha.ToMemoryStream(), "captcha.png");
+        await dmChannel.SendFileAsync(captcha.image.ToMemoryStream(), "captcha.png");
     }
 
     public static async Task OnMemberJoin(SocketGuildUser gUser)
