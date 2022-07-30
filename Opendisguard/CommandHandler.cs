@@ -11,7 +11,7 @@ using OpenCvSharp;
 
     public static async Task Handler(SocketSlashCommand command)
     {
-       var b = Database.GetVerificationCode(command.User.Id, (ulong)command.GuildId);
+       var b = Database.GetVerificationCode(command.User.Id);
        await command.RespondAsync($"Your code was {b}");
     }
     }

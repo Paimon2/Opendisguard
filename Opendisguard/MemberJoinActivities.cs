@@ -9,6 +9,19 @@ using OpenCvSharp;
     internal class MemberJoinActivities
     {
 
+    public static async void ResendAndStoreCaptcha(SocketUser user)
+    {
+        Captcha.CaptchaDetails captcha = Captcha.GenerateNewCaptcha();
+        // TODO Add user ID and captcha text to DB
+
+        var dmChannel = await user.CreateDMChannelAsync();
+
+        await dmChannel.SendMessageAsync("Configurable text");
+        await dmChannel.SendFileAsync(captcha.image.ToMemoryStream(), "captcha.png");
+
+        Database.AddVerificationCode(user.Id, captcha.text);
+    }
+
     private static async void SendAndStoreCaptcha(SocketGuildUser user)
     {
         Captcha.CaptchaDetails captcha = Captcha.GenerateNewCaptcha();
@@ -19,7 +32,7 @@ using OpenCvSharp;
         await dmChannel.SendMessageAsync("Configurable text");
         await dmChannel.SendFileAsync(captcha.image.ToMemoryStream(), "captcha.png");
 
-        Database.AddVerificationCode(user.Id, user.Guild.Id, captcha.text);
+        Database.AddVerificationCode(user.Id, captcha.text);
     }
 
     public static async Task OnMemberJoin(SocketGuildUser gUser)

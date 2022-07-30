@@ -19,8 +19,17 @@ using System.Threading.Tasks;
             return;
 
         String captchaCode = Database.GetVerificationCode(msg.Author.Id);
+        if (captchaCode == null)
+            return;
+
+        if(msg.Content != captchaCode)
+        {
+            await msg.Channel.SendMessageAsync("Wrong captcha! Try again in 10 seconds please:");
+            await Task.Delay(10000);
+            MemberJoinActivities.ResendAndStoreCaptcha(msg.Author);
+        }
+
+
     }
-
-
     }
 
