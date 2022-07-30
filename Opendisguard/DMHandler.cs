@@ -34,6 +34,7 @@ using System.Threading.Tasks;
         else
         {
             await msg.Channel.SendMessageAsync("Thank you, you have been successfully verified!");
+            Database.ClearVerificationCode(msg.Author.Id);
         }
 
 
