@@ -9,7 +9,7 @@ using OpenCvSharp;
     internal class MemberJoinActivities
     {
 
-    private static async void SendCaptcha(SocketGuildUser user)
+    private static async void SendAdndStoreCaptcha(SocketGuildUser user)
     {
         Captcha.CaptchaDetails captcha = Captcha.GenerateNewCaptcha();
         // TODO Add user ID and captcha text to DB
@@ -18,13 +18,16 @@ using OpenCvSharp;
 
         await dmChannel.SendMessageAsync("Configurable text");
         await dmChannel.SendFileAsync(captcha.image.ToMemoryStream(), "captcha.png");
+
+        Database.AddVerificationCode(user.Id, user.Guild.Id, captcha.text);
     }
 
     public static async Task OnMemberJoin(SocketGuildUser gUser)
     {
   
         if (gUser.IsBot || gUser.IsWebhook) return;
-        SendCaptcha(gUser);
+
+        SendAndStoreCaptcha(gUser);
         
 
     }

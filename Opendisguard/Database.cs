@@ -42,7 +42,7 @@ internal class Database
                                WHERE UserId = $uid AND GuildID = $gid";
 
         command.Parameters.AddWithValue("$uid", UserID);
-        command.Parameters.AddWithValue("gid", GuildID);
+        command.Parameters.AddWithValue("$gid", GuildID);
 
 
 
@@ -60,5 +60,22 @@ internal class Database
 
     }
 
+
+    public static void AddVerificationCode(ulong UserID, ulong GuildID, String CaptchaCode)
+    {
+
+        var command = DbConnection.CreateCommand();
+
+
+        command.CommandText = @"INSERT INTO PendingVerifications(UserID, GuildID, CaptchaCode) 
+                               VALUES($uid, $gid, $code);";
+
+        command.Parameters.AddWithValue("$uid", UserID);
+        command.Parameters.AddWithValue("$gid", GuildID);
+        command.Parameters.AddWithValue("$code", CaptchaCode);
+
+        command.ExecuteNonQuery();
     }
+    }
+
 
