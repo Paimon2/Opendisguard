@@ -43,7 +43,7 @@ using System.Threading.Tasks;
                                 isRequired: true);
 
 
-
+        // Add commands!
         await _client.CreateGlobalApplicationCommandAsync(globalCommand.Build());
         await _client.CreateGlobalApplicationCommandAsync(verifyDMMessage.Build());
         await _client.CreateGlobalApplicationCommandAsync(captchaDifficulty.Build());
