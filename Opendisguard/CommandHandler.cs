@@ -11,9 +11,7 @@ using OpenCvSharp;
 
     public static async Task Handler(SocketSlashCommand command)
     {
-        Mat captcha = Captcha.getCaptchaImage();
-        await command.RespondAsync($"You executed {command.Data.Name}");
-        await command.Channel.SendFileAsync(captcha.ToMemoryStream(), "image.jpeg", "Text");
+       
     }
     }
 

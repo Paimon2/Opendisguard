@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using Discord;
 using Discord.WebSocket;
-using Microsoft.Data.Sqlite;
+
 namespace MyApp // Note: actual namespace depends on the project name.
 {
 
@@ -13,7 +13,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
     {
 
         private DiscordSocketClient _client;
-        public SqliteConnection DbConnection;
+       
 
         public static void Main(string[] args)
         => new Program().MainAsync().GetAwaiter().GetResult();
@@ -56,7 +56,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
 
         public async Task Client_Ready()
         {
-            DbConnection = new SqliteConnection("Data Source=opendisguard.db");
+            Database.CheckCreateTables();
             CommandRegistry.RegisterCommands(_client);
            
         }
