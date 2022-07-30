@@ -19,21 +19,21 @@ internal class Database
 
 
         command.CommandText = @"CREATE TABLE IF NOT EXISTS PendingVerifications(
-                                GuildId INTEGER NOT NULL,
-                                UserId INTEGER NOT NULL,
+                                GuildId BIGINT NOT NULL,
+                                UserId BIGINT NOT NULL,
                                 CaptchaCode VARCHAR(8) NOT NULL);";
         command.ExecuteNonQuery();
 
         command.CommandText = @"CREATE TABLE IF NOT EXISTS ServerSpecificSettings(
                                 JoinMessage VARCHAR(512),
                                 CaptchaDifficulty INTEGER NOT NULL,
-                                RoleID INTEGER NOT NULL";
+                                RoleID BIGINT NOT NULL";
         command.ExecuteNonQuery();
-
+        
 
     }
 
-    public static String GetVerificationCode(int UserID, int GuildID)
+    public static String GetVerificationCode(ulong UserID, ulong GuildID)
     {
         var command = DbConnection.CreateCommand();
 

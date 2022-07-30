@@ -9,7 +9,7 @@ using OpenCvSharp;
     internal class MemberJoinActivities
     {
 
-    private static async void SendAdndStoreCaptcha(SocketGuildUser user)
+    private static async void SendAndStoreCaptcha(SocketGuildUser user)
     {
         Captcha.CaptchaDetails captcha = Captcha.GenerateNewCaptcha();
         // TODO Add user ID and captcha text to DB
