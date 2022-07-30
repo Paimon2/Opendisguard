@@ -61,9 +61,7 @@ internal class Database
     {
         var command = DbConnection.CreateCommand();
 
-
         command.CommandText = @"DELETE FROM PendingVerifications WHERE UserID = $uid;";
-
         command.Parameters.AddWithValue("$uid", UserID);
 
         command.ExecuteNonQuery();

@@ -25,7 +25,7 @@ using OpenCvSharp;
     private static async void SendAndStoreCaptcha(SocketGuildUser user)
     {
         Captcha.CaptchaDetails captcha = Captcha.GenerateNewCaptcha();
-        // TODO Add user ID and captcha text to DB
+
 
         var dmChannel = await user.CreateDMChannelAsync();
 
