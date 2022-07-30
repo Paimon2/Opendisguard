@@ -19,7 +19,7 @@ internal class Database
 
 
         command.CommandText = @"CREATE TABLE IF NOT EXISTS PendingVerifications(
-                                UserId BIGINT NOT NULL,
+                                UserId BIGINT PRIMARY KEY,
                                 CaptchaCode VARCHAR(8) NOT NULL);";
         command.ExecuteNonQuery();
 
@@ -57,14 +57,26 @@ internal class Database
 
     }
 
+    public static void ClearVerificationCode(ulong UserID)
+    {
+        var command = DbConnection.CreateCommand();
+
+
+        command.CommandText = @"DELETE FROM PendingVerifications WHERE UserID = $uid;";
+
+        command.Parameters.AddWithValue("$uid", UserID);
+
+        command.ExecuteNonQuery();
+    }
 
     public static void AddVerificationCode(ulong UserID, String CaptchaCode)
     {
+        ClearVerificationCode(UserID);
 
         var command = DbConnection.CreateCommand();
 
 
-        command.CommandText = @"INSERT INTO PendingVerifications(UserID,, CaptchaCode) 
+        command.CommandText = @"INSERT INTO PendingVerifications(UserID, CaptchaCode) 
                                VALUES($uid, $code);";
 
         command.Parameters.AddWithValue("$uid", UserID);

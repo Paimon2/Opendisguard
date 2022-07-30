@@ -22,11 +22,18 @@ using System.Threading.Tasks;
         if (captchaCode == null)
             return;
 
+        Console.WriteLine(captchaCode);
         if(msg.Content != captchaCode)
         {
-            await msg.Channel.SendMessageAsync("Wrong captcha! Try again in 10 seconds please:");
+            await msg.Channel.SendMessageAsync("Wrong captcha! Try again in 10 seconds please.");
             await Task.Delay(10000);
             MemberJoinActivities.ResendAndStoreCaptcha(msg.Author);
+            return;
+        }
+
+        else
+        {
+            await msg.Channel.SendMessageAsync("Thank you, you have been successfully verified!");
         }
 
 
