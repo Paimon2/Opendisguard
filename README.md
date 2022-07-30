@@ -1,3 +1,4 @@
+# Opendisguard
 Opendisguard is a self-hostable Discord bot which combats spam using CAPTCHAs locally. (WIP)
 
 It differs from other bots by:
