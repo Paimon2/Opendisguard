@@ -44,6 +44,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
             _client.Ready += Client_Ready;
             _client.SlashCommandExecuted += CommandHandler.Handler;
             _client.UserJoined += MemberJoinActivities.OnMemberJoin;
+            _client.MessageReceived += DMHandler.OnMessage;
 
 
             await _client.LoginAsync(TokenType.Bot, token);

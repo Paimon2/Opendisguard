@@ -33,17 +33,15 @@ internal class Database
 
     }
 
-    public static String GetVerificationCode(ulong UserID, ulong GuildID)
+    public static String GetVerificationCode(ulong UserID)
     {
         var command = DbConnection.CreateCommand();
 
 
         command.CommandText = @"SELECT CaptchaCode FROM PendingVerifications
-                               WHERE UserId = $uid AND GuildID = $gid";
+                               WHERE UserId = $uid;";
 
         command.Parameters.AddWithValue("$uid", UserID);
-        command.Parameters.AddWithValue("$gid", GuildID);
-
 
 
         using (var reader = command.ExecuteReader())
